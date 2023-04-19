@@ -1,6 +1,6 @@
-# The present code aims to isolate the main components of a question: entities and predicates.
-
 import stanfordnlp
+import spacy
+import pandas as pd
 nlp = stanfordnlp.Pipeline(processors='tokenize,pos,depparse', models_dir="C:\\Users\\sebas\\stanfordnlp_resources", use_gpu=False, pos_batch_size=1000)
 
 class CQ(object):
@@ -41,9 +41,8 @@ class CQ(object):
         doc = nlp(self.cq)
         deps = doc.sentences[0].dependencies
         sentence = {}
-        pred_num, entity_num = 1, 1
+        pred_num, entity_num = 0, 1
         last_verb = ""
-        print(deps)
         for dep in deps:
             pos, text, governor = dep[2].upos, dep[2].text, dep[2].governor
             if text.lower() in ["which", "who", "what", "where", "when"]:
@@ -76,10 +75,6 @@ class CQ(object):
         return sentence
 
 
-lst = [
-
-"When did this communication event take place?"
-]    
-
-for el in lst:
-    print(CQ(el).process())
+df = pd.read_csv("CQs.csv")
+for idx, row in df.iterrows():
+    print(CQ(row["Competency question"]).process())

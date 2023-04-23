@@ -1,3 +1,5 @@
+import sys
+sys.path.append("c:/users/sebas/appdata/roaming/python/python310/site-packages")
 import stanfordnlp
 import spacy
 import pandas as pd

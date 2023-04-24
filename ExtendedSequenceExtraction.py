@@ -2,6 +2,7 @@ import sys
 sys.path.append("c:/users/sebas/appdata/roaming/python/python310/site-packages")
 import pandas as pd
 import stanfordnlp
+from LodeExtractor import *
 nlp = stanfordnlp.Pipeline(processors='tokenize,pos,depparse', models_dir="C:\\Users\\sebas\\stanfordnlp_resources", use_gpu=False, pos_batch_size=1000)
 
 def process(question):

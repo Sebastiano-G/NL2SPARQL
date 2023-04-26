@@ -1,5 +1,3 @@
-import sys
-sys.path.append("c:/users/sebas/appdata/roaming/python/python310/site-packages")
 import stanfordnlp
 import spacy
 import pandas as pd
@@ -27,11 +25,14 @@ class CQ(object):
         else:
             for dep in depencies_list:
                 if dep[0] == dependency:
-                    if (dep[2].upos in ["ADJ", "DET", "ADP"] or dep[1] == "compound") and dep[2].text.lower() not in ["which", "who", "what", "where", "when"]:
+                    if (dep[2].upos in ["ADJ"] or dep[1] == "compound") and dep[2].text.lower() not in ["which", "who", "what", "where", "when"]:
                         result = result + " " + dep[2].text
                 elif dep[2] == dependency:
                     result = result + " " + dep[2].text
-            return result.strip()
+            result = result.strip()
+            if result.startswith("of "):
+                result = result.replace("of ", "")
+            return result
     
     def check_entity(self, var, sentence):
         for el in sentence:
@@ -77,6 +78,7 @@ class CQ(object):
         return sentence
 
 
-df = pd.read_csv("CQs.csv")
+""" df = pd.read_csv("CQs.csv")
 for idx, row in df.iterrows():
-    print(CQ(row["Competency question"]).process())
+    print(CQ(row["Competency question"]).process()) """
+

@@ -9,9 +9,10 @@ The SequenceExtract.py script attempts to isolate the predicates and entities th
 
 Let's consider the following question "What are the topics of a song?". This question will processed to produce the following outputs:
 
-| **File**   | **Output**                                                           |
-| ---------- | -------------------------------------------------------------------- |
+| **File**   | **Output**                                                                                 |
+| ---------- | ------------------------------------------------------------------------------------------ |
 | [SequenceExtraction.py](https://github.com/Sebastiano-G/NL2SPARQL/blob/main/SequenceExtraction.py) |{'question': 'Which', 'predicate1': 'are', 'entity1': 'topics', 'entity2': 'song'}|
-| [ExtendedSequenceExtract.py](https://github.com/Sebastiano-G/NL2SPARQL/blob/main/ExtendedSequenceExtract.py) |['Which', 'TO-BE-VERB', 'NOUN', 'of', 'NOUN'] |                    |
-| [LodeExtractor.py](https://github.com/Sebastiano-G/NL2SPARQL/blob/main/LodeExtractor.py)   | [example notebook](https://github.com/Sebastiano-G/NL2SPARQL/blob/main/Parsing%20OWL%20ontology.ipynb)                                     |
-| [ToSPARQL.py](https://github.com/Sebastiano-G/NL2SPARQL/blob/main/ToSPARQL.py)   |                           |
+| [ExtendedSequenceExtract.py](https://github.com/Sebastiano-G/NL2SPARQL/blob/main/ExtendedSequenceExtract.py) |['Which', 'TO-BE-VERB', 'NOUN', 'of', 'NOUN'] |            
+| [LodeExtractor.py](https://github.com/Sebastiano-G/NL2SPARQL/blob/main/LodeExtractor.py)| [example notebook](https://github.com/Sebastiano-G/NL2SPARQL/blob/main/Parsing%20OWL%20ontology.ipynb)|
+| [ToSPARQL.py](https://github.com/Sebastiano-G/NL2SPARQL/blob/main/ToSPARQL.py) |  SELECT ?topics <br> WHERE { <br> ?topics <https://songstopoems.github.io/STOP/stopfinal.owl#appears_in> ?song . <br> ?topics hasType <https://songstopoems.github.io/STOP/stopfinal.owl#Topic> . <br> ?song hasType <https://songstopoems.github.io/STOP/stopfinal.owl#Song> . <br> }                         
+|

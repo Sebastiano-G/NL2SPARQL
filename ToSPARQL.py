@@ -10,7 +10,7 @@ my_questions = [
 ]
 
 #ontology_link = "https://raw.githubusercontent.com/polifonia-project/organs-ontology/main/organs-ontology.owl"
-ontology_link = "https://raw.githubusercontent.com/SongsTOPoems/STOP/main/WIDOCOFINAL/stop.rdf"
+ontology_link = "https://raw.githubusercontent.com/Sebastiano-G/SPBERT-SPARNATURAL-REACT/main/stopRDF.rdf"
 
 def remove_stop_words(expression):
         if "PROPN," in expression:
@@ -18,7 +18,7 @@ def remove_stop_words(expression):
         else:
             result = ""
             for el in expression.split(" "):
-                if el not in ["the", "a", "of", "in"]:
+                if el not in ["the", "a", "an", "of", "in", "at"]:
                     result = result + " " + el
             return result.strip()
 
@@ -39,11 +39,11 @@ def bestPred(pred, e1, e2, classes, predicates):
     if set_value:
         possible_domains = [e1]
         possible_ranges = [e2] 
-        if "has sub-classes" in list(classes[e1].keys()):
-            for el in classes[e1]["has sub-classes"]:
+        if "has super-classes" in list(classes[e1].keys()):
+            for el in classes[e1]["has super-classes"]:
                 possible_domains.append(el) 
-        if "has sub-classes" in list(classes[e2].keys()):
-            for el in classes[e2]["has sub-classes"]:
+        if "has super-classes" in list(classes[e2].keys()):
+            for el in classes[e2]["has super-classes"]:
                 possible_ranges.append(el)
         pred_labels = []
         for predicate in predicates:
